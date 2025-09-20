@@ -48,6 +48,10 @@ app.use("/", contactRouter);
 app.use("/", adminRouter);
 app.use("/", serviceRouter);
 
+app.get("/", (req, res) => {
+  res.redirect("/home");
+});
+
 
 const PORT = process.env.PORT || 3000;
 
