@@ -9,10 +9,12 @@ const adminRouter = require("./router/admin-router");
 const serviceRouter = require("./router/serviceRouter");
 const authMiddleware = require("./middlewares/auth-middleware");
 const cookieParser = require("cookie-parser");
+const connectDB = require("./config/db");
 const dotenv = require("dotenv").config();
 
 const app = express();
 
+connectDB()
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -26,12 +28,13 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: "yoursecretkey", // kuch bhi random secret rakhlo   
+    secret: process.env.SESSION_SECRET,  // ✅ env se le raha hai
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false },
+    cookie: { secure: false }, 
   })
 );
+
 
 // ✅ Har request pe user ko res.locals mei daal do
 app.use((req, res, next) => {

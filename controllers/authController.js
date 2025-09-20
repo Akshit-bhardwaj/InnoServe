@@ -50,7 +50,7 @@ const register = async (req, res) => {
 
     const token = jwt.sign(
       { id: createUser._id, email: createUser.email },
-      process.env.JWT_Secret_Key,
+      process.env.JWT_SECRET_KEY,
       { expiresIn: "30d" }
     );
     res.cookie("token", token);
