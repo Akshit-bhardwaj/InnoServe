@@ -46,10 +46,10 @@ app.use("/", adminRouter);
 app.use("/", serviceRouter);
 
 
-app.listen(3000, (err) => {
-  if (err) {
-    console.log("Error", err);
-  } else {
-    console.log("Server is running port 3000...");
-  }
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, (err) => {
+  if (err) console.log(err);
+  else console.log(`✅ Server running on port ${PORT}`);
 });
+
