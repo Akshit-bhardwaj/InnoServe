@@ -10,7 +10,7 @@ const authorizeRole = (allowedRoles) => {
         .redirect("/login");
     }
     if (!allowedRoles.includes(req.session.user.role)) {
-      return res.json("Access denied , Role not permitted");
+      return res.redirect("/login");
     }
     next();
   };

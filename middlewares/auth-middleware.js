@@ -8,7 +8,7 @@ const authentication = async (req, res, next) => {
       return next(); // token nahi hai to guest hi rahega
     }
 
-    const verifyToken = jwt.verify(token, process.env.JWT_Secret_Key);
+    const verifyToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const checkUser = await User.findById(verifyToken.id);
     if (!checkUser) {
       return next();

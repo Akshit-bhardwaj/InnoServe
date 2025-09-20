@@ -90,7 +90,7 @@ const login = async (req, res) => {
       // Token set.
       const token = jwt.sign(
         { id: userExist._id, role: userExist.role, email: userExist.email },
-        process.env.JWT_Secret_Key,
+        process.env.JWT_SECRET_KEY,
         { expiresIn: "30d" }
       );
       res.cookie("token", token);
