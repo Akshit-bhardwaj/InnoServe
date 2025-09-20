@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Signup Form</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #6e8efb, #a777e3);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Segoe UI", sans-serif;
+      }
+      .card {
+        border: none;
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+      .form-control {
+        border-radius: 1rem;
+        padding: 12px 20px;
+      }
+      .btn-custom {
+        border-radius: 1rem;
+        padding: 12px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+      .btn-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      .form-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+      }
+      .input-group {
+        position: relative;
+      }
+      .input-group .form-control {
+        padding-left: 40px;
+      }
+      .error {
+        color: red;
+        font-size: 0.85rem;
+        margin-top: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("./base/header") %>
+   <%- include("./base/navbar") %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7 col-sm-10">
+          <div class="card p-4">
+            <div class="card-body">
+              <h3 class="text-center mb-4 fw-bold text-primary">
+                Create Account
+              </h3>
+              <form id="signupForm" action="/register" method="post" novalidate>
+                <!-- Username -->
+                <div class="mb-3 input-group">
+                  <i class="bi bi-person form-icon"></i>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    id="username"
+                    placeholder="Username"
+                    required
+                  />
+                </div>
+                <div class="error" id="usernameError"></div>
+
+                <!-- Email -->
+                <div class="mb-3 input-group">
+                  <i class="bi bi-envelope form-icon"></i>
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    id="email"
+                    placeholder="Email Address"
+                    required
+                  />
+                </div>
+                <div class="error" id="emailError"></div>
+
+                <!-- Phone -->
+                <div class="mb-3 input-group">
+                  <i class="bi bi-telephone form-icon"></i>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    name="phone"
+                    id="phone"
+                    placeholder="Phone Number"
+                    required
+                  />
+                </div>
+                <div class="error" id="phoneError"></div>
+
+                <!-- Password -->
+                <div class="mb-3 input-group">
+                  <i class="bi bi-lock form-icon"></i>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div class="error" id="passwordError"></div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-primary w-100 btn-custom">
+                  Sign Up
+                </button>
+              </form>
+              <p class="text-center mt-3 mb-0">
+                Already have an account?
+                <a href="/login" class="text-decoration-none fw-semibold">Login</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("signupForm");
+
+      form.addEventListener("submit", function (e) {
+        let isValid = true;
+
+        // Username
+        const username = document.getElementById("username").value.trim();
+        const usernameError = document.getElementById("usernameError");
+        if (username.length < 3) {
+          usernameError.textContent = "Username must be at least 3 characters.";
+          isValid = false;
+        } else {
+          usernameError.textContent = "";
+        }
+
+        // Email
+        const email = document.getElementById("email").value.trim();
+        const emailError = document.getElementById("emailError");
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!emailPattern.test(email)) {
+          emailError.textContent = "Please enter a valid email address.";
+          isValid = false;
+        } else {
+          emailError.textContent = "";
+        }
+
+        // Phone
+        const phone = document.getElementById("phone").value.trim();
+        const phoneError = document.getElementById("phoneError");
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phonePattern.test(phone)) {
+          phoneError.textContent = "Phone number must be 10 digits.";
+          isValid = false;
+        } else {
+          phoneError.textContent = "";
+        }
+
+        // Password
+        // Password
+        const password = document.getElementById("password").value;
+        const passwordError = document.getElementById("passwordError");
+        // Pehle ye tha 👇
+        // const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+        // Ab simple 6 char ka pattern
+        const passwordPattern = /^.{6,}$/;
+
+        if (!passwordPattern.test(password)) {
+          passwordError.textContent = "Password must be at least 6 characters.";
+          isValid = false;
+        } else {
+          passwordError.textContent = "";
+        }
+
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

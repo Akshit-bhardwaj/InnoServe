@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+ 
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    .login-card h2 {
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      color: #2575fc;
+    }
+    .form-control {
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+    .btn-primary {
+      border-radius: 8px;
+      background: #2575fc;
+      border: none;
+      padding: 0.75rem;
+      font-weight: 500;
+    }
+    .btn-primary:hover {
+      background: #1a5ed8;
+    }
+    .extra-links {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .extra-links a {
+      text-decoration: none;
+      color: #2575fc;
+      font-weight: 500;
+    }
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+    <%- include("./base/header") %>
+   <%- include("./base/navbar") %>
+  <div class="login-card">
+    <h2>Welcome Back</h2>
+    <form action="/login" method="POST" novalidate>
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Email Address" name="email" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" placeholder="Password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+    <div class="extra-links">
+      <p class="mt-3">Don't have an account? <a href="/register">Sign Up</a></p>
+    </div>
+  </div>
+</body>
+</html>

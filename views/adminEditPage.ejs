@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit User</title>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .edit-card {
+      width: 100%;
+      max-width: 450px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      animation: fadeInUp 0.8s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .edit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .edit-title {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 25px;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      padding: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(90deg, #3b82f6, #9333ea);
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      padding: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-secondary {
+      width: 100%;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 600;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<%- include('./base/header') %>
+  <div class="edit-card">
+    <h2 class="edit-title">✏️ Edit User</h2>
+    <form action="/admin/edit/user/<%= user._id %>?_method=PUT" method="POST">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" name="username" value="<%= user.username %>" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" value="<%= user.email %>" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input type="text" name="phone" value="<%= user.phone %>" class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-primary mb-2">💾 Update</button>
+      <a href="/admin/user" class="btn btn-secondary">⬅️ Back</a>
+    </form>
+  </div>
+
+</body>
+</html>
