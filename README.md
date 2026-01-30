@@ -60,5 +60,5 @@ Built using the **MERN stack** + EJS with a clean UI and secure backend.
 
 1. **Clone the repository**  
 ```bash
-git clone https://github.com/<your-username>/InnoServe.git
+git clone https://github.com/<Akshit-bhardwaj>/InnoServe.git
 cd InnoServe
